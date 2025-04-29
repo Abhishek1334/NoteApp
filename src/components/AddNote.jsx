@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getNotes, saveNotes } from "../utils/storage";
 import { showSuccess, showError } from "../utils/toast";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 
 export default function AddNote({ onNoteAdded }) {
 	const [title, setTitle] = useState("");
@@ -46,13 +46,24 @@ export default function AddNote({ onNoteAdded }) {
 
 	return (
 		<div className="p-4 max-w-xl mx-auto">
-			<h2 className="text-2xl font-bold mb-4">Add a Note</h2>
 			{error && (
 				<div className="bg-red-100 text-red-700 p-2 mb-3 rounded">
 					{error}
 					{/* // Why display error banner: informs the user about a failed save operation. */}
 				</div>
 			)}
+			<div className="w-full max-w-3xl flex justify-between items-center mb-6 sm:mb-8 px-4 sm:px-0">
+				<Link
+					to="/"
+					className="text-blue-600 hover:underline px-3 py-2 rounded-md transition-colors duration-200 focus:outline-none focus:ring focus:ring-blue-300"
+				>
+					Go Back
+				</Link>
+				<h1 className="text-2xl sm:text-3xl font-bold text-gray-800 max-md:text-xl">
+					Add a New Note
+				</h1>
+				<div></div>
+			</div>
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<input
 					className="w-full p-2 border rounded"
@@ -76,7 +87,6 @@ export default function AddNote({ onNoteAdded }) {
 					{isSaving ? "Saving..." : "Save Note"}
 					{/* // Why show spinner here: provides visual feedback that the saving process is in progress. */}
 				</button>
-				
 			</form>
 		</div>
 	);
