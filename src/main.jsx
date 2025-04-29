@@ -9,7 +9,7 @@ import EditNote from "./components/EditNote";
 import NotePage from "./pages/NotePage";
 import { Toaster } from "react-hot-toast";
 
-// Why this nav approach for simplicity 
+// Why this nav approach for simplicity
 // React Router provides a declarative way to handle navigation, making it easy to define routes and link between different parts of the application.
 
 const router = createBrowserRouter([
@@ -19,16 +19,16 @@ const router = createBrowserRouter([
 		children: [
 			{ path: "/", element: <NotesList /> },
 			{ path: "add", element: <AddNote /> },
-			{ path: "/edit/:id", element:<EditNote /> },
-			{path: "/view/:id", element:<NotePage />},
-			{ path: "*", element: <NotesList /> },//404 page or all routes not found
+			{ path: "/edit/:id", element: <EditNote /> },
+			{ path: "/view/:id", element: <NotePage /> },
+			{ path: "*", element: <NotesList /> }, // 404 fallback
 		],
 	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
+	<>
 		<RouterProvider router={router} />
 		<Toaster position="top-right" />
-	</React.StrictMode>
+	</>
 );
