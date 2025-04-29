@@ -10,7 +10,6 @@ export default function NoteCard({ note, onDelete }) {
 			try {
 				deleteNote(note.id);
 				onDelete();
-				showSuccess("Note deleted successfully!");
 			} catch (error) {
 				showError("Failed to delete note.", error);
 			}
