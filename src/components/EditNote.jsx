@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { getNoteById, updateNote } from "../utils/storage";
 import { showSuccess, showError } from "../utils/toast";
+import { LuCircleX } from "react-icons/lu";
 
 const EditNote = () => {
-	//Fetching note details by ID using useParams
+	//Get note ID from URL
 	const { id: noteId } = useParams();
 	const navigate = useNavigate();
 	const [note, setNote] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
+	//Fetch note by ID from localStorage
 	useEffect(() => {
 		setLoading(true);
 		setError(null);
-        //Fetch note by ID from localStorage
+
 		const fetchedNote = getNoteById(noteId);
 
 		if (fetchedNote) {
@@ -36,12 +38,12 @@ const EditNote = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-        //Check if the title or content is empty
+		//Check if the title or content is empty
 		if (note?.title?.trim() === "" || note?.content?.trim() === "") {
 			showError("Both title and content are required.");
 			return;
 		}
+
 		if (note) {
 			updateNote(note);
 			showSuccess("Note updated successfully!");
@@ -65,53 +67,38 @@ const EditNote = () => {
 		);
 	}
 
-	if (!note) {
-		return (
-			<div className="flex items-center justify-center h-screen">
-				No note to display.
-			</div>
-		);
-	}
-
 	return (
-		<div className="min-h-screen bg-gray-100 flex flex-col items-center justify-start py-8 sm:py-12">
-			<div className="w-full max-w-3xl flex justify-between items-center mb-6 sm:mb-8 px-4 sm:px-0">
-				<Link
-					to="/"
-					className="text-blue-600 hover:underline px-3 py-2 rounded-md transition-colors duration-200 focus:outline-none focus:ring focus:ring-blue-300"
-				>
-					Go Back
+		<div className="max-w-xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
+			<div className="flex justify-between items-center mb-4">
+				<h1 className="text-2xl font-semibold">Edit Note</h1>
+				<Link to="/" title="Cancel">
+					<LuCircleX
+						size={24}
+						className="text-red-500 hover:text-red-600"
+					/>
 				</Link>
-				<h1 className="text-2xl sm:text-3xl font-bold text-gray-800 max-md:text-xl">
-					Edit Note
-				</h1>
-				<div></div>
 			</div>
-			<form
-				onSubmit={handleSubmit}
-				className="w-full max-w-lg space-y-4 flex flex-col justify-center px-4 py-6 bg-white rounded-md shadow-md"
-			>
+
+			<form onSubmit={handleSubmit} className="space-y-4">
 				<input
 					type="text"
 					name="title"
-					id="title"
 					value={note?.title || ""}
 					onChange={handleChange}
-					className="border p-3 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-gray-700"
+					className="w-full p-3 border rounded focus:ring focus:ring-blue-200 focus:outline-none"
 					placeholder="Title"
 				/>
 				<textarea
 					name="content"
-					id="content"
 					value={note?.content || ""}
 					onChange={handleChange}
-					className="border p-3 rounded-md shadow-sm focus:ring focus:ring-blue-200 focus:outline-none text-gray-700 min-h-[140px]"
+					className="w-full p-3 border rounded focus:ring focus:ring-blue-200 focus:outline-none min-h-[140px]"
 					placeholder="Content"
-					rows="8"
+					rows={8}
 				/>
 				<button
 					type="submit"
-					className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-3 rounded-md shadow-md transition-colors duration-200 focus:outline-none focus:ring focus:ring-blue-300"
+					className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition disabled:opacity-50"
 				>
 					Save Note
 				</button>

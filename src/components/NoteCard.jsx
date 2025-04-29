@@ -18,7 +18,7 @@ export default function NoteCard({ note, onDelete }) {
 	};
 
 	return (
-		<div className="border p-4 rounded-lg shadow-sm">
+		<div className="border border-gray-300 p-4 rounded-lg shadow-sm">
 			<h3 className="text-lg font-semibold">{note.title}</h3>
 			<p className="text-gray-600">{note.content.substring(0, 100)}...</p>
 			<div className="mt-2 flex justify-end gap-5">

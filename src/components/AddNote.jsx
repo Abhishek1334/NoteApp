@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { getNotes, saveNotes } from "../utils/storage";
 import { showSuccess, showError } from "../utils/toast";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
+import { LuCircleX } from "react-icons/lu";
 
 export default function AddNote({ onNoteAdded }) {
 	const [title, setTitle] = useState("");
@@ -9,19 +10,16 @@ export default function AddNote({ onNoteAdded }) {
 	const [isSaving, setIsSaving] = useState(false);
 	const [error, setError] = useState(null);
 	const navigate = useNavigate();
-
+	// Why I chose useState + this submit handler:
+	// useState enables controlled inputs; the submit handler manages save logic.
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
 		// Check if the title or content is empty
 		if (!title.trim() || !content.trim()) {
 			setError("Both title and content are required.");
 			showError("Both title and content are required.");
 			return;
 		}
-
-		// Why I chose useState + this submit handler:
-		// useState is used for controlled form inputs, and the handleSubmit function holds the logic for saving the note.
 
 		setIsSaving(true);
 		setError(null);
@@ -33,7 +31,7 @@ export default function AddNote({ onNoteAdded }) {
 			saveNotes([newNote, ...existingNotes]);
 			setTitle("");
 			setContent("");
-			onNoteAdded?.(); // trigger reload in NotesList
+			onNoteAdded?.();
 			showSuccess("Note saved.");
 			navigate("/");
 		} catch (error) {
@@ -45,39 +43,36 @@ export default function AddNote({ onNoteAdded }) {
 	};
 
 	return (
-		<div className="p-4 max-w-xl mx-auto">
+		<div className="max-w-xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md">
+			<div className="flex justify-between items-center mb-4">
+				<h1 className="text-2xl font-semibold">Add Note</h1>
+				<Link to="/" title="Cancel">
+					<LuCircleX
+						size={24}
+						className="text-red-500 hover:text-red-600"
+					/>
+				</Link>
+			</div>
+
 			{error && (
-				<div className="bg-red-100 text-red-700 p-2 mb-3 rounded">
+				<div className="bg-red-100 text-red-700 p-2 mb-4 rounded">
 					{error}
-					{/* // Why display error banner: informs the user about a failed save operation. */}
 				</div>
 			)}
-			<div className="w-full max-w-3xl flex justify-between items-center mb-6 sm:mb-8 px-4 sm:px-0">
-				<Link
-					to="/"
-					className="text-blue-600 hover:underline px-3 py-2 rounded-md transition-colors duration-200 focus:outline-none focus:ring focus:ring-blue-300"
-				>
-					Go Back
-				</Link>
-				<h1 className="text-2xl sm:text-3xl font-bold text-gray-800 max-md:text-xl">
-					Add a New Note
-				</h1>
-				<div></div>
-			</div>
+
 			<form onSubmit={handleSubmit} className="space-y-4">
 				<input
-					className="w-full p-2 border rounded"
+					className="w-full p-3 border rounded focus:ring focus:ring-blue-200 focus:outline-none"
 					type="text"
 					placeholder="Title"
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 				/>
 				<textarea
-					className="w-full p-2 border rounded"
+					className="w-full p-3 border rounded focus:ring focus:ring-blue-200 focus:outline-none min-h-[120px]"
 					placeholder="Content"
 					value={content}
 					onChange={(e) => setContent(e.target.value)}
-					rows={5}
 				/>
 				<button
 					type="submit"
@@ -85,7 +80,6 @@ export default function AddNote({ onNoteAdded }) {
 					className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
 				>
 					{isSaving ? "Saving..." : "Save Note"}
-					{/* // Why show spinner here: provides visual feedback that the saving process is in progress. */}
 				</button>
 			</form>
 		</div>
