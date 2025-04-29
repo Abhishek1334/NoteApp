@@ -1,40 +1,42 @@
 # Custom Note Service
 
-A simple React application for taking and viewing notes, with data stored locally in the browser using `localStorage`.
+A simple React application for taking, viewing, and editing notes, with data stored locally in the browser using `localStorage`.
 
 ## Setup & Run
 
-1.  Clone the repository: `git clone <your-repo-url>`
+1.  Clone the repository: `git clone https://github.com/Abhishek1334/NoteApp`
 2.  Navigate to the project directory: `cd your-project-folder-name`
 3.  Install dependencies: `npm install` or `yarn install`
 4.  Start the development server: `npm start` or `yarn start`
 5.  Open your browser to `http://localhost:3000` (or the port specified in your terminal).
 
+## Features
+
+* **Add Notes:** Create new notes with a title and content.
+* **View Notes:** See a list of all your saved notes.
+* **Edit Notes:** Modify the title and content of existing notes.
+* **Local Storage:** Notes are persisted directly in your browser's `localStorage`, so no backend is required.
+* **Responsive Design:** The application layout adapts to different screen sizes for a better user experience on various devices.
+* **Form Validation:** Basic validation to ensure both title and content are provided when saving notes.
+* **Toast Notifications:** Provides visual feedback for successful actions (saving, updating, deleting).
+
 ## Why?
 
-* **Storage Strategy:** Used `localStorage` because it provides a straightforward way to persist data directly in the user's browser without requiring a backend server. The key `custom_notes_app_notes` was chosen to create a specific namespace for this application's data within `localStorage`, minimizing the risk of conflicts with other websites or applications.
-* **Component Structure:** The application is organized into modular components (`AddNote`, `NotesList`) to separate concerns related to user input and data display. This structure enhances code readability and maintainability. The main `App` component manages navigation and overall state.
-* **State Management:** React's built-in `useState` hook is utilized within components to manage their local state, such as form inputs and the list of notes. Props are passed down to child components to share data, and callback functions are used to communicate events back to parent components.
-* **Styling Approach:** [**Replace this with your choice and reasoning:** e.g., Used Tailwind CSS for rapid prototyping and utility-first styling, allowing for quick and consistent UI development directly within the component JSX. / Used plain CSS in `index.css` for a more traditional styling approach, focusing on global styles and selectors. / Used CSS Modules to scope styles locally to each component, preventing naming collisions and improving maintainability.]
-* **Navigation Approach:** Implemented simple navigation using [**Replace this with your approach:** e.g., buttons at the top of the page controlled by state variables for conditional rendering. / basic tabs using `Link` components from `react-router-dom`]. This minimal approach is sufficient for the project's scope, providing clear switching between adding and viewing notes.
-
-## Code Comments
-
-The codebase includes concise one-line comments to explain key design decisions:
-
-* **`AddNote.jsx`**: Explains the choice of `useState` for form management and the purpose of the `handleSubmit` function.
-* **`NotesList.jsx`**: Explains the use of `useEffect` to initially load notes from `localStorage` and keep the component's state in sync.
-* **Navigation component (`App.jsx` or a dedicated navigation component)**: Explains the rationale behind the chosen navigation approach for its simplicity.
-* **Error/Loading handling in relevant components**: Explains why the "Saving..." spinner and error banner are displayed to the user.
+* **Storage Strategy:** Used `localStorage` for its simplicity in persisting data directly within the browser without a server. The key `custom_notes_app_notes` provides a specific namespace for the application's data.
+* **Component Structure:** The application is built with reusable components (`AddNote`, `NotesList`, `EditNote`, `NoteCard`, `Layout`, `Navbar`) to separate concerns and improve code organization and maintainability.
+* **State Management:** React's `useState` hook manages component-level state for form inputs, notes list, and loading/error indicators. Props are used to pass data between components.
+* **Styling Approach:** Utilized Tailwind CSS for rapid and responsive styling through utility classes, enabling quick UI development and consistency.
+* **Navigation Approach:** Implemented navigation using `react-router-dom` to handle routing between different views (view notes, add note, edit note) in a declarative and straightforward manner.
 
 ## Further Improvements (Optional)
 
-* Implement note editing functionality.
-* Add a more sophisticated UI with a dedicated navigation bar.
-* Include features like note searching or tagging.
-* Consider using a more advanced state management library for larger applications.
+* Implement note deletion functionality.
+* Add a more sophisticated UI with advanced styling.
+* Include features like searching, filtering, or tagging of notes.
+* Consider more robust error handling and user feedback.
+* Add a Express, Node and MongoDB backend for data storage and management
 
 ## Submission
 
-* **GitHub Repo URL:** `<your-repo-URL>`
-* **Live Site URL:** `<your-vercel-or-netlify-URL>`
+* **GitHub Repo URL:** `https://github.com/Abhishek1334/NoteApp`
+* **Live Site URL:** `https://note-app-nu-fawn.vercel.app/`
