@@ -23,7 +23,7 @@ A simple React application for taking, viewing, and editing notes, with data sto
 ## Why?
 
 * **Storage Strategy:** Used `localStorage` for its simplicity in persisting data directly within the browser without a server. The key `custom_notes_app_notes` provides a specific namespace for the application's data.
-* **Component Structure:** The application is built with reusable components (`AddNote`, `NotesList`, `EditNote`, `NoteCard`, `Layout`) to separate concerns and improve code organization and maintainability.
+* **Component Structure:** The application is built with reusable components (`AddNote`, `NotesList`, `EditNote`, `NoteCard`, `Layout`, `Navbar`) to separate concerns and improve code organization and maintainability.
 * **State Management:** React's `useState` hook manages component-level state for form inputs, notes list, and loading/error indicators. Props are used to pass data between components.
 * **Styling Approach:** Utilized Tailwind CSS for rapid and responsive styling through utility classes, enabling quick UI development and consistency.
 * **Navigation Approach:** Implemented navigation using `react-router-dom` to handle routing between different views (view notes, add note, edit note) in a declarative and straightforward manner.
@@ -34,6 +34,7 @@ A simple React application for taking, viewing, and editing notes, with data sto
 * Add a more sophisticated UI with advanced styling.
 * Include features like searching, filtering, or tagging of notes.
 * Consider more robust error handling and user feedback.
+* Add a Express, Node and MongoDB backend for data storage and management
 
 ## Submission
 
