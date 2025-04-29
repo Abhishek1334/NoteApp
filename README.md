@@ -4,7 +4,7 @@ A simple React application for taking, viewing, and editing notes, with data sto
 
 ## Setup & Run
 
-1.  Clone the repository: `git clone <your-repo-url>`
+1.  Clone the repository: `git clone https://github.com/Abhishek1334/NoteApp`
 2.  Navigate to the project directory: `cd your-project-folder-name`
 3.  Install dependencies: `npm install` or `yarn install`
 4.  Start the development server: `npm start` or `yarn start`
