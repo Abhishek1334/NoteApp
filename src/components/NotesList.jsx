@@ -6,7 +6,8 @@ import { showSuccess } from "../utils/toast";
 
 export default function NotesList() {
 	const [notes, setNotes] = useState([]);
-
+	// Why useEffect to sync storage → state:
+	// useEffect with an empty dependency runs once after the initial render which loads notes from localStorage to initialize the notes state.
 	useEffect(() => {
 		const storedNotes = getNotes();
 		setNotes(storedNotes);

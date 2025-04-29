@@ -3,6 +3,8 @@ import { deleteNote } from "../utils/storage";
 import { showSuccess, showError } from "../utils/toast";
 
 export default function NoteCard({ note, onDelete }) {
+
+	// confirm user wants to delete
 	const handleDelete = () => {
 		if (window.confirm("Are you sure you want to delete this note?")) {
 			try {

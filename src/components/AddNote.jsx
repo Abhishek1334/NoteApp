@@ -21,7 +21,7 @@ export default function AddNote({ onNoteAdded }) {
 		}
 
 		// Why I chose useState + this submit handler:
-		// useState simplifies controlled inputs, and the handler ensures stateful form logic is isolated.
+		// useState is used for controlled form inputs, and the handleSubmit function holds the logic for saving the note.
 
 		setIsSaving(true);
 		setError(null);
@@ -49,7 +49,8 @@ export default function AddNote({ onNoteAdded }) {
 			<h2 className="text-2xl font-bold mb-4">Add a Note</h2>
 			{error && (
 				<div className="bg-red-100 text-red-700 p-2 mb-3 rounded">
-					{error}{" "}
+					{error}
+					{/* // Why display error banner: informs the user about a failed save operation. */}
 				</div>
 			)}
 			<form onSubmit={handleSubmit} className="space-y-4">
@@ -73,8 +74,9 @@ export default function AddNote({ onNoteAdded }) {
 					className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
 				>
 					{isSaving ? "Saving..." : "Save Note"}
+					{/* // Why show spinner here: provides visual feedback that the saving process is in progress. */}
 				</button>
-				{/* // Why show spinner here: gives user feedback that save is in progress */}
+				
 			</form>
 		</div>
 	);
