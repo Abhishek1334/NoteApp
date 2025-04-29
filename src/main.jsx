@@ -6,6 +6,7 @@ import Layout from "./pages/Layout";
 import NotesList from "./components/NotesList";
 import AddNote from "./components/AddNote";
 import EditNote from "./components/EditNote";
+import NotePage from "./pages/NotePage";
 import { Toaster } from "react-hot-toast";
 
 // Why this nav approach for simplicity 
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
 			{ path: "/", element: <NotesList /> },
 			{ path: "add", element: <AddNote /> },
 			{ path: "/edit/:id", element:<EditNote /> },
+			{path: "/view/:id", element:<NotePage />},
 			{ path: "*", element: <NotesList /> },//404 page or all routes not found
 		],
 	},
